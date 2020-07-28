@@ -15,24 +15,15 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
-
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
+
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import java.util.*;
 
 /**
  * Simple JavaBean domain object representing an owner.
@@ -62,6 +53,8 @@ public class Owner extends Person {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<Pet> pets;
 
+	private Integer age;
+
 	public String getAddress() {
 		return this.address;
 	}
@@ -84,6 +77,14 @@ public class Owner extends Person {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 	protected Set<Pet> getPetsInternal() {
@@ -112,6 +113,7 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
 	 * @param name to test
 	 * @return true if pet name is already in use
 	 */
@@ -121,6 +123,7 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
 	 * @param name to test
 	 * @return true if pet name is already in use
 	 */
@@ -142,9 +145,9 @@ public class Owner extends Person {
 	public String toString() {
 		return new ToStringCreator(this)
 
-				.append("id", this.getId()).append("new", this.isNew()).append("lastName", this.getLastName())
-				.append("firstName", this.getFirstName()).append("address", this.address).append("city", this.city)
-				.append("telephone", this.telephone).toString();
+			.append("id", this.getId()).append("new", this.isNew()).append("lastName", this.getLastName())
+			.append("firstName", this.getFirstName()).append("address", this.address).append("city", this.city)
+			.append("telephone", this.telephone).toString();
 	}
 
 }
