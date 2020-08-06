@@ -1,5 +1,5 @@
 ================================================================================
-===        Spring PetClinic sample application - MySQL Configuration         ===
+===        Spring PetClinic org.springframework.samples.petclinic.sample application - MySQL Configuration         ===
 ================================================================================
 
 @author Sam Brannen
