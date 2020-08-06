@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.samples.petclinic.visit.VisitRepository;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,9 @@ class OwnerController {
 	private final OwnerRepository owners;
 	private final ApplicationContext applicationContext;
 	private VisitRepository visits;
+
+	@Autowired
+	private PetRepository petRepository;
 
 	public OwnerController(OwnerRepository clinicService, VisitRepository visits, ApplicationContext applicationContext) {
 		this.owners = clinicService;
